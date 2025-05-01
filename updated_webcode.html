@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alex Morgan - Architecture Portfolio</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#333333',secondary:'#F5F5F5'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body {
+font-family: 'Inter', sans-serif;
+color: #333333;
+}
+.timeline-item::before {
+content: '';
+position: absolute;
+left: -9px;
+top: 0;
+width: 18px;
+height: 18px;
+border-radius: 50%;
+background-color: #333333;
+z-index: 10;
+}
+.timeline-item::after {
+content: '';
+position: absolute;
+left: 0;
+top: 0;
+bottom: 0;
+width: 1px;
+background-color: #e5e5e5;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
+.custom-checkbox {
+position: relative;
+display: inline-block;
+width: 20px;
+height: 20px;
+border: 2px solid #333333;
+border-radius: 4px;
+cursor: pointer;
+}
+.custom-checkbox.checked::after {
+content: '';
+position: absolute;
+top: 2px;
+left: 6px;
+width: 6px;
+height: 12px;
+border: solid #333333;
+border-width: 0 2px 2px 0;
+transform: rotate(45deg);
+}
+.custom-switch {
+position: relative;
+display: inline-block;
+width: 48px;
+height: 24px;
+}
+.custom-switch-input {
+opacity: 0;
+width: 0;
+height: 0;
+}
+.custom-switch-slider {
+position: absolute;
+cursor: pointer;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background-color: #ccc;
+transition: .4s;
+border-radius: 24px;
+}
+.custom-switch-slider:before {
+position: absolute;
+content: "";
+height: 18px;
+width: 18px;
+left: 3px;
+bottom: 3px;
+background-color: white;
+transition: .4s;
+border-radius: 50%;
+}
+.custom-switch-input:checked + .custom-switch-slider {
+background-color: #333333;
+}
+.custom-switch-input:checked + .custom-switch-slider:before {
+transform: translateX(24px);
+}
+.custom-range {
+-webkit-appearance: none;
+width: 100%;
+height: 4px;
+background: #e5e5e5;
+border-radius: 4px;
+outline: none;
+}
+.custom-range::-webkit-slider-thumb {
+-webkit-appearance: none;
+appearance: none;
+width: 16px;
+height: 16px;
+background: #333333;
+border-radius: 50%;
+cursor: pointer;
+}
+.custom-range::-moz-range-thumb {
+width: 16px;
+height: 16px;
+background: #333333;
+border-radius: 50%;
+cursor: pointer;
+border: none;
+}
+</style>
+</head>
+<body class="bg-white">
+<!-- Header/Navigation -->
+<header class="fixed top-0 left-0 right-0 bg-white shadow-sm z-50">
+<div class="container mx-auto px-6 py-4">
+<div class="flex justify-between items-center">
+<a href="#" class="text-2xl font-['Pacifico'] text-primary">Ahme Ürün</a>
+<nav class="hidden md:flex space-x-8">
+<a href="#home" class="text-primary hover:text-gray-600 transition-colors">Home</a>
+<a href="#about" class="text-primary hover:text-gray-600 transition-colors">About</a>
+<a href="#portfolio" class="text-primary hover:text-gray-600 transition-colors">Portfolio</a>
+<a href="#resume" class="text-primary hover:text-gray-600 transition-colors">Resume</a>
+<a href="#blog" class="text-primary hover:text-gray-600 transition-colors">Blog</a>
+<a href="#contact" class="text-primary hover:text-gray-600 transition-colors">Contact</a>
+</nav>
+<div class="md:hidden flex items-center">
+<button id="mobile-menu-button" class="w-10 h-10 flex items-center justify-center text-primary">
+<i class="ri-menu-line ri-lg"></i>
+</button>
+</div>
+</div>
+</div>
+<!-- Mobile Menu -->
+<div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg absolute w-full">
+<div class="container mx-auto px-6 py-4">
+<div class="flex flex-col space-y-4">
+<a href="#home" class="text-primary hover:text-gray-600 transition-colors py-2">Home</a>
+<a href="#about" class="text-primary hover:text-gray-600 transition-colors py-2">About</a>
+<a href="#portfolio" class="text-primary hover:text-gray-600 transition-colors py-2">Portfolio</a>
+<a href="#resume" class="text-primary hover:text-gray-600 transition-colors py-2">Resume</a>
+<a href="#blog" class="text-primary hover:text-gray-600 transition-colors py-2">Blog</a>
+<a href="#contact" class="text-primary hover:text-gray-600 transition-colors py-2">Contact</a>
+</div>
+</div>
+</div>
+</header>
+<!-- Hero Section -->
+<section id="home" class="pt-24 md:pt-0 relative min-h-screen flex items-center" style="background-image: url('https://readdy.ai/api/search-image?query=A%20minimalist%20architectural%20scene%20with%20clean%20lines%20and%20dramatic%20shadows%2C%20featuring%20a%20modern%20building%20with%20glass%20and%20concrete%20elements.%20The%20image%20has%20a%20monochromatic%20palette%20with%20high%20contrast%20between%20light%20and%20dark%20areas.%20The%20left%20side%20of%20the%20image%20has%20a%20clean%2C%20light%20background%20perfect%20for%20text%20overlay%2C%20while%20the%20right%20side%20showcases%20the%20architectural%20details.%20Professional%20photography%20with%20shallow%20depth%20of%20field.&width=1920&height=1080&seq=1&orientation=landscape'); background-size: cover; background-position: center;">
+<div class="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-transparent"></div>
+<div class="container mx-auto px-6 relative z-10 w-full">
+<div class="max-w-2xl">
+<h1 class="text-4xl md:text-6xl font-bold mb-4">Ahme Ürün</h1>
+<h2 class="text-2xl md:text-3xl font-medium mb-6">Architecture Student & Designer</h2>
+<p class="text-lg md:text-xl mb-8">Creating spaces that inspire and transform the way we live.</p>
+<div class="flex flex-wrap gap-4">
+<a href="#portfolio" class="bg-primary text-white px-6 py-3 !rounded-button whitespace-nowrap hover:bg-gray-800 transition-colors">View My Work</a>
+<a href="#contact" class="border-2 border-primary text-primary px-6 py-3 !rounded-button whitespace-nowrap hover:bg-gray-100 transition-colors">Get In Touch</a>
+</div>
+</div>
+</div>
+<div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+<div class="w-10 h-10 flex items-center justify-center text-primary">
+<i class="ri-arrow-down-line ri-lg"></i>
+</div>
+</div>
+</section>
+<!-- About Section -->
+<section id="about" class="py-20 bg-white">
+<div class="container mx-auto px-6">
+<h2 class="text-3xl md:text-4xl font-bold mb-16 text-center">About Me</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+<div class="rounded-lg overflow-hidden shadow-lg">
+<img src="https://readdy.ai/api/search-image?query=A%20professional%20portrait%20of%20a%20young%20architecture%20student%20in%20their%20mid-twenties%20with%20a%20confident%20expression%2C%20standing%20in%20a%20minimalist%20studio%20with%20architectural%20models%20and%20drawings%20in%20the%20background.%20The%20person%20is%20wearing%20smart%20casual%20attire%20in%20neutral%20tones.%20The%20lighting%20is%20soft%20and%20flattering%2C%20creating%20a%20professional%20atmosphere.%20The%20image%20has%20a%20clean%2C%20monochromatic%20aesthetic%20with%20excellent%20composition%20and%20balance.&width=600&height=800&seq=2&orientation=portrait" alt="Alex Morgan" class="w-full h-full object-cover object-top">
+</div>
+<div>
+<h3 class="text-2xl font-semibold mb-6">Merhaba, ben Ahmet</h3>
+<p class="text-gray-700 mb-6">İstanbul Teknik Üniversitesi, İstanbul'da ikinci sınıf mimarlık öğrencisiyim. Yaklaşımım, işlevsel ihtiyaçları karşılarken çevreleriyle uyum sağlayan alanlar yaratmak için yenilikçi teknikleri çevre bilinciyle birleştiriyor.</p>
+<div class="mb-8">
+<h4 class="text-xl font-medium mb-4">Academic Background</h4>
+<p class="text-gray-700 mb-2">• Master of Architecture (in progress) - UC Berkeley</p>
+<p class="text-gray-700 mb-2">• Çevresel Tasarımda Sanat Lisansı - Stanford Üniversitesi</p>
+<p class="text-gray-700">• Study Abroad Program - Architectural Association, London</p>
+</div>
+<div class="mb-8">
+<h4 class="text-xl font-medium mb-4">Architectural Interests</h4>
+<div class="flex flex-wrap gap-2">
+<span class="bg-secondary px-3 py-1 rounded-full text-sm">Sustainable Design</span>
+<span class="bg-secondary px-3 py-1 rounded-full text-sm">Urban Planning</span>
+<span class="bg-secondary px-3 py-1 rounded-full text-sm">Adaptive Reuse</span>
+<span class="bg-secondary px-3 py-1 rounded-full text-sm">Parametric Architecture</span>
+<span class="bg-secondary px-3 py-1 rounded-full text-sm">Biophilic Design</span>
+<span class="bg-secondary px-3 py-1 rounded-full text-sm">Digital Fabrication</span>
+</div>
+</div>
+<div>
+<h4 class="text-xl font-medium mb-4">Skills</h4>
+<div class="space-y-4">
+<div>
+<div class="flex justify-between mb-1">
+<span>Architectural Visualization</span>
+<span>90%</span>
+</div>
+<div class="h-2 bg-gray-200 rounded-full">
+<div class="h-full bg-primary rounded-full" style="width: 90%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-1">
+<span>3D Modeling (Rhino, SketchUp)</span>
+<span>85%</span>
+</div>
+<div class="h-2 bg-gray-200 rounded-full">
+<div class="h-full bg-primary rounded-full" style="width: 85%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-1">
+<span>BIM (Revit, ArchiCAD)</span>
+<span>80%</span>
+</div>
+<div class="h-2 bg-gray-200 rounded-full">
+<div class="h-full bg-primary rounded-full" style="width: 80%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-1">
+<span>Adobe Creative Suite</span>
+<span>75%</span>
+</div>
+<div class="h-2 bg-gray-200 rounded-full">
+<div class="h-full bg-primary rounded-full" style="width: 75%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Portfolio Section -->
+<section id="portfolio" class="py-20 bg-secondary">
+<div class="container mx-auto px-6">
+<h2 class="text-3xl md:text-4xl font-bold mb-6 text-center">Portfolio</h2>
+<p class="text-gray-700 text-center max-w-3xl mx-auto mb-12">A selection of my architectural projects showcasing my design philosophy and technical skills.</p>
+<div class="flex justify-center mb-10">
+<div class="inline-flex bg-white p-1 rounded-full">
+<button class="filter-btn active px-4 py-2 rounded-full whitespace-nowrap bg-primary text-white" data-filter="all">All Projects</button>
+<button class="filter-btn px-4 py-2 rounded-full whitespace-nowrap" data-filter="academic">Academic</button>
+<button class="filter-btn px-4 py-2 rounded-full whitespace-nowrap" data-filter="competition">Competition</button>
+<button class="filter-btn px-4 py-2 rounded-full whitespace-nowrap" data-filter="conceptual">Conceptual</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="portfolio-grid">
+<!-- Project 1 -->
+<div class="portfolio-item bg-white rounded-lg overflow-hidden shadow-lg" data-category="academic">
+<div class="relative overflow-hidden group">
+<img src="https://readdy.ai/api/search-image?query=A%20modern%20sustainable%20residential%20building%20with%20clean%20lines%2C%20large%20windows%2C%20and%20natural%20materials.%20The%20architecture%20features%20a%20harmonious%20blend%20of%20wood%20and%20concrete%20with%20green%20roof%20elements.%20The%20lighting%20creates%20dramatic%20shadows%20and%20highlights%20the%20geometric%20forms.%20The%20image%20has%20a%20monochromatic%20color%20scheme%20with%20high%20contrast%20and%20professional%20architectural%20photography%20style.&width=800&height=600&seq=3&orientation=landscape" alt="Urban Housing Complex" class="w-full h-64 object-cover object-top transition-transform duration-500 group-hover:scale-110">
+<div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+<button class="view-project bg-white text-primary px-4 py-2 !rounded-button whitespace-nowrap">View Project</button>
+</div>
+</div>
+<div class="p-6">
+<span class="inline-block bg-secondary px-3 py-1 rounded-full text-xs mb-3">Academic</span>
+<h3 class="text-xl font-semibold mb-2">Urban Housing Complex</h3>
+<p class="text-gray-600">A sustainable multi-family housing development designed for an urban infill site in San Francisco.</p>
+</div>
+</div>
+<!-- Project 2 -->
+<div class="portfolio-item bg-white rounded-lg overflow-hidden shadow-lg" data-category="competition">
+<div class="relative overflow-hidden group">
+<img src="https://readdy.ai/api/search-image?query=A%20striking%20contemporary%20museum%20building%20with%20bold%20geometric%20forms%20and%20dramatic%20cantilevers.%20The%20architecture%20features%20glass%20facades%20that%20reflect%20the%20surroundings%20and%20create%20interesting%20light%20patterns.%20The%20building%20is%20set%20against%20a%20minimal%20landscape%20with%20clean%20lines.%20The%20image%20has%20a%20monochromatic%20aesthetic%20with%20strong%20contrast%20between%20light%20and%20shadow%2C%20showcasing%20professional%20architectural%20photography%20techniques.&width=800&height=600&seq=4&orientation=landscape" alt="Contemporary Art Museum" class="w-full h-64 object-cover object-top transition-transform duration-500 group-hover:scale-110">
+<div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+<button class="view-project bg-white text-primary px-4 py-2 !rounded-button whitespace-nowrap">View Project</button>
+</div>
+</div>
+<div class="p-6">
+<span class="inline-block bg-secondary px-3 py-1 rounded-full text-xs mb-3">Competition</span>
+<h3 class="text-xl font-semibold mb-2">Contemporary Art Museum</h3>
+<p class="text-gray-600">An award-winning competition entry for a contemporary art museum that explores the relationship between art and architecture.</p>
+</div>
+</div>
+<!-- Project 3 -->
+<div class="portfolio-item bg-white rounded-lg overflow-hidden shadow-lg" data-category="conceptual">
+<div class="relative overflow-hidden group">
+<img src="https://readdy.ai/api/search-image?query=A%20futuristic%20floating%20pavilion%20concept%20with%20organic%20curved%20forms%20and%20transparent%20materials.%20The%20structure%20appears%20to%20hover%20above%20water%20with%20innovative%20structural%20solutions.%20The%20design%20incorporates%20sustainable%20features%20like%20solar%20panels%20and%20rainwater%20collection%20systems.%20The%20image%20has%20a%20monochromatic%20color%20palette%20with%20dramatic%20lighting%20that%20emphasizes%20the%20sculptural%20qualities%20of%20the%20architecture.%20Professional%20architectural%20visualization%20style.&width=800&height=600&seq=5&orientation=landscape" alt="Floating Pavilion" class="w-full h-64 object-cover object-top transition-transform duration-500 group-hover:scale-110">
+<div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+<button class="view-project bg-white text-primary px-4 py-2 !rounded-button whitespace-nowrap">View Project</button>
+</div>
+</div>
+<div class="p-6">
+<span class="inline-block bg-secondary px-3 py-1 rounded-full text-xs mb-3">Conceptual</span>
+<h3 class="text-xl font-semibold mb-2">Floating Pavilion</h3>
+<p class="text-gray-600">A speculative design for a floating pavilion that responds to rising sea levels and explores new ways of living with water.</p>
+</div>
+</div>
+<!-- Project 4 -->
+<div class="portfolio-item bg-white rounded-lg overflow-hidden shadow-lg" data-category="academic">
+<div class="relative overflow-hidden group">
+<img src="https://readdy.ai/api/search-image?query=A%20modern%20library%20interior%20with%20double-height%20spaces%2C%20floating%20staircases%2C%20and%20abundant%20natural%20light.%20The%20architecture%20features%20clean%20lines%2C%20wood%20elements%2C%20and%20strategic%20skylights%20that%20create%20dramatic%20light%20patterns%20on%20minimal%20surfaces.%20The%20space%20has%20thoughtful%20reading%20areas%20with%20comfortable%20furniture.%20The%20image%20has%20a%20monochromatic%20aesthetic%20with%20professional%20architectural%20interior%20photography%20style%20focusing%20on%20spatial%20quality%20and%20materials.&width=800&height=600&seq=6&orientation=landscape" alt="Public Library" class="w-full h-64 object-cover object-top transition-transform duration-500 group-hover:scale-110">
+<div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+<button class="view-project bg-white text-primary px-4 py-2 !rounded-button whitespace-nowrap">View Project</button>
+</div>
+</div>
+<div class="p-6">
+<span class="inline-block bg-secondary px-3 py-1 rounded-full text-xs mb-3">Academic</span>
+<h3 class="text-xl font-semibold mb-2">Public Library</h3>
+<p class="text-gray-600">A design for a neighborhood library that creates a welcoming community space while optimizing natural light and ventilation.</p>
+</div>
+</div>
+<!-- Project 5 -->
+<div class="portfolio-item bg-white rounded-lg overflow-hidden shadow-lg" data-category="competition">
+<div class="relative overflow-hidden group">
+<img src="https://readdy.ai/api/search-image?query=A%20minimalist%20pedestrian%20bridge%20with%20elegant%20structural%20elements%20and%20clean%20lines%20spanning%20across%20a%20natural%20landscape.%20The%20bridge%20design%20features%20innovative%20use%20of%20materials%20like%20steel%20and%20glass%20with%20thoughtful%20lighting%20integration.%20The%20architecture%20creates%20a%20harmonious%20relationship%20with%20the%20surrounding%20environment.%20The%20image%20has%20a%20monochromatic%20aesthetic%20with%20dramatic%20lighting%20that%20highlights%20the%20structural%20beauty.%20Professional%20architectural%20photography%20with%20attention%20to%20detail%20and%20composition.&width=800&height=600&seq=7&orientation=landscape" alt="Pedestrian Bridge" class="w-full h-64 object-cover object-top transition-transform duration-500 group-hover:scale-110">
+<div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+<button class="view-project bg-white text-primary px-4 py-2 !rounded-button whitespace-nowrap">View Project</button>
+</div>
+</div>
+<div class="p-6">
+<span class="inline-block bg-secondary px-3 py-1 rounded-full text-xs mb-3">Competition</span>
+<h3 class="text-xl font-semibold mb-2">Pedestrian Bridge</h3>
+<p class="text-gray-600">A competition entry for a pedestrian bridge that serves as both infrastructure and public space.</p>
+</div>
+</div>
+<!-- Project 6 -->
+<div class="portfolio-item bg-white rounded-lg overflow-hidden shadow-lg" data-category="conceptual">
+<div class="relative overflow-hidden group">
+<img src="https://readdy.ai/api/search-image?query=A%20vertical%20urban%20farm%20concept%20integrated%20into%20a%20high-rise%20building%20with%20terraced%20gardens%20and%20transparent%20facades.%20The%20architecture%20features%20innovative%20sustainable%20systems%20like%20rainwater%20harvesting%20and%20solar%20panels.%20The%20design%20shows%20a%20harmonious%20integration%20of%20nature%20and%20technology%20in%20an%20urban%20context.%20The%20image%20has%20a%20monochromatic%20color%20palette%20with%20professional%20architectural%20visualization%20style%20focusing%20on%20the%20innovative%20concept%20and%20environmental%20integration.&width=800&height=600&seq=8&orientation=landscape" alt="Vertical Urban Farm" class="w-full h-64 object-cover object-top transition-transform duration-500 group-hover:scale-110">
+<div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+<button class="view-project bg-white text-primary px-4 py-2 !rounded-button whitespace-nowrap">View Project</button>
+</div>
+</div>
+<div class="p-6">
+<span class="inline-block bg-secondary px-3 py-1 rounded-full text-xs mb-3">Conceptual</span>
+<h3 class="text-xl font-semibold mb-2">Vertical Urban Farm</h3>
+<p class="text-gray-600">A conceptual design for a vertical urban farm that integrates agriculture into the urban fabric to promote food security.</p>
+</div>
+</div>
+</div>
+<div class="flex justify-center mt-12">
+<button id="load-more" class="border-2 border-primary text-primary px-6 py-3 !rounded-button whitespace-nowrap hover:bg-gray-100 transition-colors">Load More Projects</button>
+</div>
+</div>
+</section>
+<!-- Project Modal -->
+<div id="project-modal" class="fixed inset-0 z-50 hidden">
+<div class="absolute inset-0 bg-black bg-opacity-75"></div>
+<div class="relative z-10 container mx-auto px-6 h-full flex items-center justify-center">
+<div class="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+<div class="flex justify-between items-center p-6 border-b">
+<h3 class="text-2xl font-semibold" id="modal-title">Project Title</h3>
+<button id="close-modal" class="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-gray-700">
+<i class="ri-close-line ri-lg"></i>
+</button>
+</div>
+<div class="p-6" id="modal-content">
+<!-- Content will be dynamically inserted here -->
+</div>
+</div>
+</div>
+</div>
+<!-- Resume Section -->
+<section id="resume" class="py-20 bg-white">
+<div class="container mx-auto px-6">
+<h2 class="text-3xl md:text-4xl font-bold mb-6 text-center">Resume</h2>
+<p class="text-gray-700 text-center max-w-3xl mx-auto mb-12">My educational background and professional experience in architecture and design.</p>
+<div class="flex justify-center mb-10">
+<a href="resume.pdf" download class="flex items-center gap-2 bg-primary text-white px-6 py-3 !rounded-button whitespace-nowrap hover:bg-gray-800 transition-colors">
+<i class="ri-download-line"></i>
+Download CV
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+<!-- Education Timeline -->
+<div>
+<h3 class="text-2xl font-semibold mb-8 flex items-center gap-3">
+<div class="w-8 h-8 flex items-center justify-center bg-primary rounded-full text-white">
+<i class="ri-graduation-cap-line"></i>
+</div>
+Education
+</h3>
+<div class="relative pl-8">
+<div class="timeline-item relative pb-12">
+<h4 class="text-xl font-medium mb-1">Master of Architecture</h4>
+<p class="text-gray-600 mb-1">University of California, Berkeley</p>
+<p class="text-gray-500 mb-3">2023 - Present</p>
+<p class="text-gray-700">Focusing on sustainable design strategies and digital fabrication techniques. Recipient of the Dean's Merit Scholarship for academic excellence.</p>
+</div>
+<div class="timeline-item relative pb-12">
+<h4 class="text-xl font-medium mb-1">Study Abroad Program</h4>
+<p class="text-gray-600 mb-1">Architectural Association, London</p>
+<p class="text-gray-500 mb-3">Spring 2022</p>
+<p class="text-gray-700">Participated in an intensive design studio focused on adaptive reuse of historic buildings in urban contexts.</p>
+</div>
+<div class="timeline-item relative">
+<h4 class="text-xl font-medium mb-1">Bachelor of Arts in Environmental Design</h4>
+<p class="text-gray-600 mb-1">Stanford University</p>
+<p class="text-gray-500 mb-3">2019 - 2023</p>
+<p class="text-gray-700">Graduated with honors. Thesis project on biophilic design principles in healthcare facilities received departmental recognition.</p>
+</div>
+</div>
+</div>
+<!-- Experience Timeline -->
+<div>
+<h3 class="text-2xl font-semibold mb-8 flex items-center gap-3">
+<div class="w-8 h-8 flex items-center justify-center bg-primary rounded-full text-white">
+<i class="ri-briefcase-line"></i>
+</div>
+Experience
+</h3>
+<div class="relative pl-8">
+<div class="timeline-item relative pb-12">
+<h4 class="text-xl font-medium mb-1">Architectural Intern</h4>
+<p class="text-gray-600 mb-1">Foster + Partners, San Francisco</p>
+<p class="text-gray-500 mb-3">Summer 2024</p>
+<p class="text-gray-700">Assisted with design development and documentation for a mixed-use high-rise project. Created 3D models and renderings for client presentations.</p>
+</div>
+<div class="timeline-item relative pb-12">
+<h4 class="text-xl font-medium mb-1">Research Assistant</h4>
+<p class="text-gray-600 mb-1">UC Berkeley Center for Environmental Design</p>
+<p class="text-gray-500 mb-3">2023 - Present</p>
+<p class="text-gray-700">Conducting research on climate-responsive design strategies for affordable housing. Developing digital tools to analyze building performance.</p>
+</div>
+<div class="timeline-item relative">
+<h4 class="text-xl font-medium mb-1">Design Intern</h4>
+<p class="text-gray-600 mb-1">SOM, New York</p>
+<p class="text-gray-500 mb-3">Summer 2022</p>
+<p class="text-gray-700">Collaborated on concept development for an international airport competition. Created physical models and presentation materials.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Awards and Achievements -->
+<div class="mt-16">
+<h3 class="text-2xl font-semibold mb-8 flex items-center gap-3 justify-center">
+<div class="w-8 h-8 flex items-center justify-center bg-primary rounded-full text-white">
+<i class="ri-award-line"></i>
+</div>
+Awards & Achievements
+</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<div class="bg-secondary rounded-lg p-6">
+<div class="w-12 h-12 flex items-center justify-center bg-primary rounded-full text-white mb-4">
+<i class="ri-trophy-line ri-lg"></i>
+</div>
+<h4 class="text-xl font-medium mb-2">AIA Student Design Award</h4>
+<p class="text-gray-700">2023 - Honorable Mention for Urban Housing Complex project</p>
+</div>
+<div class="bg-secondary rounded-lg p-6">
+<div class="w-12 h-12 flex items-center justify-center bg-primary rounded-full text-white mb-4">
+<i class="ri-medal-line ri-lg"></i>
+</div>
+<h4 class="text-xl font-medium mb-2">Berkeley Design Fellowship</h4>
+<p class="text-gray-700">2023 - Full tuition scholarship for academic excellence</p>
+</div>
+<div class="bg-secondary rounded-lg p-6">
+<div class="w-12 h-12 flex items-center justify-center bg-primary rounded-full text-white mb-4">
+<i class="ri-star-line ri-lg"></i>
+</div>
+<h4 class="text-xl font-medium mb-2">Emerging Talent Award</h4>
+<p class="text-gray-700">2022 - Architectural Record magazine's annual student competition</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Blog Section -->
+<section id="blog" class="py-20 bg-secondary">
+<div class="container mx-auto px-6">
+<h2 class="text-3xl md:text-4xl font-bold mb-6 text-center">Blog</h2>
+<p class="text-gray-700 text-center max-w-3xl mx-auto mb-12">Thoughts, ideas, and explorations in architecture and design.</p>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Blog Post 1 -->
+<div class="bg-white rounded-lg overflow-hidden shadow-lg">
+<div class="relative h-48 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=A%20close-up%20of%20architectural%20sketches%20and%20drawings%20on%20a%20desk%20with%20drafting%20tools.%20The%20image%20shows%20detailed%20hand-drawn%20plans%2C%20elevations%2C%20and%20perspective%20sketches%20of%20a%20building%20design.%20There%20are%20pencils%2C%20rulers%2C%20and%20other%20drafting%20tools%20arranged%20around%20the%20drawings.%20The%20lighting%20creates%20interesting%20shadows%20across%20the%20paper.%20The%20image%20has%20a%20monochromatic%20aesthetic%20with%20professional%20photography%20style%20focusing%20on%20the%20craft%20of%20architectural%20drawing.&width=800&height=500&seq=9&orientation=landscape" alt="The Art of Hand Sketching in a Digital Age" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-6">
+<div class="flex items-center gap-4 text-sm text-gray-500 mb-3">
+<span class="flex items-center gap-1">
+<i class="ri-calendar-line"></i>
+May 1, 2025
+</span>
+<span class="flex items-center gap-1">
+<i class="ri-time-line"></i>
+5 min read
+</span>
+</div>
+<h3 class="text-xl font-semibold mb-3">The Art of Hand Sketching in a Digital Age</h3>
+<p class="text-gray-700 mb-4">Exploring the continued relevance and creative benefits of hand drawing in contemporary architectural practice despite the prevalence of digital tools.</p>
+<a href="#" class="inline-flex items-center text-primary font-medium hover:underline">
+Read More
+<i class="ri-arrow-right-line ml-1"></i>
+</a>
+</div>
+</div>
+<!-- Blog Post 2 -->
+<div class="bg-white rounded-lg overflow-hidden shadow-lg">
+<div class="relative h-48 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=A%20sustainable%20architecture%20scene%20showing%20innovative%20green%20building%20features%20like%20solar%20panels%2C%20green%20roof%2C%20and%20rainwater%20collection%20systems%20integrated%20into%20a%20modern%20building%20design.%20The%20image%20shows%20the%20buildings%20relationship%20with%20nature%20with%20plants%20growing%20on%20and%20around%20the%20structure.%20The%20lighting%20emphasizes%20the%20sustainable%20elements.%20The%20image%20has%20a%20monochromatic%20aesthetic%20with%20professional%20architectural%20photography%20style%20focusing%20on%20sustainable%20design%20solutions.&width=800&height=500&seq=10&orientation=landscape" alt="Sustainable Materials in Contemporary Design" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-6">
+<div class="flex items-center gap-4 text-sm text-gray-500 mb-3">
+<span class="flex items-center gap-1">
+<i class="ri-calendar-line"></i>
+April 15, 2025
+</span>
+<span class="flex items-center gap-1">
+<i class="ri-time-line"></i>
+7 min read
+</span>
+</div>
+<h3 class="text-xl font-semibold mb-3">Sustainable Materials in Contemporary Design</h3>
+<p class="text-gray-700 mb-4">An analysis of innovative sustainable materials being used in cutting-edge architectural projects and their environmental impact.</p>
+<a href="#" class="inline-flex items-center text-primary font-medium hover:underline">
+Read More
+<i class="ri-arrow-right-line ml-1"></i>
+</a>
+</div>
+</div>
+<!-- Blog Post 3 -->
+<div class="bg-white rounded-lg overflow-hidden shadow-lg">
+<div class="relative h-48 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=A%20scene%20showing%20a%203D%20printer%20creating%20an%20architectural%20model%20with%20precise%20detail.%20The%20image%20shows%20the%20printing%20process%20in%20action%20with%20the%20machine%20extruding%20material%20to%20form%20a%20complex%20architectural%20form.%20There%20are%20finished%20models%20nearby%20showing%20the%20quality%20of%20the%20output.%20The%20lighting%20creates%20dramatic%20shadows%20that%20highlight%20the%20technology%20and%20the%20resulting%20forms.%20The%20image%20has%20a%20monochromatic%20aesthetic%20with%20professional%20photography%20style%20focusing%20on%20digital%20fabrication%20in%20architecture.&width=800&height=500&seq=11&orientation=landscape" alt="Digital Fabrication Techniques for Model Making" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-6">
+<div class="flex items-center gap-4 text-sm text-gray-500 mb-3">
+<span class="flex items-center gap-1">
+<i class="ri-calendar-line"></i>
+March 28, 2025
+</span>
+<span class="flex items-center gap-1">
+<i class="ri-time-line"></i>
+6 min read
+</span>
+</div>
+<h3 class="text-xl font-semibold mb-3">Digital Fabrication Techniques for Model Making</h3>
+<p class="text-gray-700 mb-4">A guide to using 3D printing, laser cutting, and CNC milling to create precise architectural models for presentations and design development.</p>
+<a href="#" class="inline-flex items-center text-primary font-medium hover:underline">
+Read More
+<i class="ri-arrow-right-line ml-1"></i>
+</a>
+</div>
+</div>
+</div>
+<div class="flex justify-center mt-12">
+<a href="#" class="border-2 border-primary text-primary px-6 py-3 !rounded-button whitespace-nowrap hover:bg-gray-100 transition-colors">View All Posts</a>
+</div>
+</div>
+</section>
+<!-- Contact Section -->
+<section id="contact" class="py-20 bg-white">
+<div class="container mx-auto px-6">
+<h2 class="text-3xl md:text-4xl font-bold mb-6 text-center">Contact Me</h2>
+<p class="text-gray-700 text-center max-w-3xl mx-auto mb-12">Have a project in mind or want to discuss collaboration opportunities? Get in touch!</p>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+<!-- Contact Form -->
+<div class="bg-secondary rounded-lg p-8">
+<h3 class="text-2xl font-semibold mb-6">Send a Message</h3>
+<form id="contact-form">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div>
+<label for="name" class="block text-gray-700 mb-2">Name</label>
+<input type="text" id="name" class="w-full px-4 py-3 border-none rounded bg-white focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Your name">
+</div>
+<div>
+<label for="email" class="block text-gray-700 mb-2">Email</label>
+<input type="email" id="email" class="w-full px-4 py-3 border-none rounded bg-white focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Your email">
+</div>
+</div>
+<div class="mb-6">
+<label for="subject" class="block text-gray-700 mb-2">Subject</label>
+<div class="relative">
+<select id="subject" class="w-full px-4 py-3 pr-8 border-none rounded bg-white focus:outline-none focus:ring-2 focus:ring-primary appearance-none">
+<option value="" disabled selected>Select a subject</option>
+<option value="project">Project Inquiry</option>
+<option value="collaboration">Collaboration</option>
+<option value="job">Job Opportunity</option>
+<option value="other">Other</option>
+</select>
+<div class="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
+<i class="ri-arrow-down-s-line"></i>
+</div>
+</div>
+</div>
+<div class="mb-6">
+<label for="message" class="block text-gray-700 mb-2">Message</label>
+<textarea id="message" rows="5" class="w-full px-4 py-3 border-none rounded bg-white focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Your message"></textarea>
+</div>
+<button type="submit" class="bg-primary text-white px-6 py-3 !rounded-button whitespace-nowrap hover:bg-gray-800 transition-colors">Send Message</button>
+</form>
+</div>
+<!-- Contact Information -->
+<div>
+<div class="mb-10">
+<h3 class="text-2xl font-semibold mb-6">Contact Information</h3>
+<div class="space-y-4">
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 flex items-center justify-center bg-primary rounded-full text-white shrink-0">
+<i class="ri-mail-line"></i>
+</div>
+<div>
+<h4 class="font-medium mb-1">Email</h4>
+<p class="text-gray-700">alex.morgan@berkeley.edu</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 flex items-center justify-center bg-primary rounded-full text-white shrink-0">
+<i class="ri-phone-line"></i>
+</div>
+<div>
+<h4 class="font-medium mb-1">Phone</h4>
+<p class="text-gray-700">+1 (415) 555-1234</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 flex items-center justify-center bg-primary rounded-full text-white shrink-0">
+<i class="ri-map-pin-line"></i>
+</div>
+<div>
+<h4 class="font-medium mb-1">Location</h4>
+<p class="text-gray-700">Berkeley, California, USA</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 flex items-center justify-center bg-primary rounded-full text-white shrink-0">
+<i class="ri-time-line"></i>
+</div>
+<div>
+<h4 class="font-medium mb-1">Working Hours</h4>
+<p class="text-gray-700">Monday - Friday: 9am - 6pm</p>
+</div>
+</div>
+</div>
+</div>
+<div class="mb-10">
+<h3 class="text-2xl font-semibold mb-6">Connect With Me</h3>
+<div class="flex gap-4">
+<a href="#" class="w-12 h-12 flex items-center justify-center bg-primary rounded-full text-white hover:bg-gray-800 transition-colors">
+<i class="ri-linkedin-fill"></i>
+</a>
+<a href="#" class="w-12 h-12 flex items-center justify-center bg-primary rounded-full text-white hover:bg-gray-800 transition-colors">
+<i class="ri-instagram-line"></i>
+</a>
+<a href="#" class="w-12 h-12 flex items-center justify-center bg-primary rounded-full text-white hover:bg-gray-800 transition-colors">
+<i class="ri-behance-line"></i>
+</a>
+<a href="#" class="w-12 h-12 flex items-center justify-center bg-primary rounded-full text-white hover:bg-gray-800 transition-colors">
+<i class="ri-pinterest-line"></i>
+</a>
+</div>
+</div>
+<div>
+<h3 class="text-2xl font-semibold mb-6">Location</h3>
+<div class="h-64 rounded-lg overflow-hidden">
+<div class="w-full h-full bg-cover bg-center" style="background-image: url('https://public.readdy.ai/gen_page/map_placeholder_1280x720.png')"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-primary text-white py-12">
+<div class="container mx-auto px-6">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+<div>
+<a href="#" class="text-2xl font-['Pacifico'] text-white mb-4 inline-block">Ahme Ürün</a>
+<p class="text-gray-300 mb-6">Architecture student and designer passionate about creating sustainable and innovative spaces.</p>
+<div class="flex gap-4">
+<a href="#" class="text-white hover:text-gray-300 transition-colors">
+<i class="ri-linkedin-fill"></i>
+</a>
+<a href="#" class="text-white hover:text-gray-300 transition-colors">
+<i class="ri-instagram-line"></i>
+</a>
+<a href="#" class="text-white hover:text-gray-300 transition-colors">
+<i class="ri-behance-line"></i>
+</a>
+<a href="#" class="text-white hover:text-gray-300 transition-colors">
+<i class="ri-pinterest-line"></i>
+</a>
+</div>
+</div>
+<div>
+<h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+<ul class="space-y-2">
+<li><a href="#home" class="text-gray-300 hover:text-white transition-colors">Home</a></li>
+<li><a href="#about" class="text-gray-300 hover:text-white transition-colors">About</a></li>
+<li><a href="#portfolio" class="text-gray-300 hover:text-white transition-colors">Portfolio</a></li>
+<li><a href="#resume" class="text-gray-300 hover:text-white transition-colors">Resume</a></li>
+<li><a href="#blog" class="text-gray-300 hover:text-white transition-colors">Blog</a></li>
+<li><a href="#contact" class="text-gray-300 hover:text-white transition-colors">Contact</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-lg font-semibold mb-4">Services</h4>
+<ul class="space-y-2">
+<li><a href="#" class="text-gray-300 hover:text-white transition-colors">Architectural Design</a></li>
+<li><a href="#" class="text-gray-300 hover:text-white transition-colors">3D Visualization</a></li>
+<li><a href="#" class="text-gray-300 hover:text-white transition-colors">Concept Development</a></li>
+<li><a href="#" class="text-gray-300 hover:text-white transition-colors">Design Research</a></li>
+<li><a href="#" class="text-gray-300 hover:text-white transition-colors">Model Making</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-lg font-semibold mb-4">Contact</h4>
+<ul class="space-y-2">
+<li class="flex items-center gap-2">
+<i class="ri-mail-line"></i>
+<span>alex.morgan@berkeley.edu</span>
+</li>
+<li class="flex items-center gap-2">
+<i class="ri-phone-line"></i>
+<span>+1 (415) 555-1234</span>
+</li>
+<li class="flex items-center gap-2">
+<i class="ri-map-pin-line"></i>
+<span>Berkeley, California, USA</span>
+</li>
+</ul>
+</div>
+</div>
+<div class="pt-8 border-t border-gray-700 text-center">
+<p class="text-gray-400">&copy; 2025 Ahme Ürün. All rights reserved.</p>
+</div>
+</div>
+</footer>
+<!-- Back to Top Button -->
+<button id="back-to-top" class="fixed bottom-6 right-6 w-12 h-12 flex items-center justify-center bg-primary text-white rounded-full shadow-lg opacity-0 invisible transition-all duration-300">
+<i class="ri-arrow-up-line ri-lg"></i>
+</button>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+// Mobile Menu Toggle
+const mobileMenuButton = document.getElementById('mobile-menu-button');
+const mobileMenu = document.getElementById('mobile-menu');
+mobileMenuButton.addEventListener('click', function() {
+mobileMenu.classList.toggle('hidden');
+});
+// Close mobile menu when clicking on a link
+const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+mobileMenuLinks.forEach(link => {
+link.addEventListener('click', function() {
+mobileMenu.classList.add('hidden');
+});
+});
+// Smooth scrolling for navigation links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+anchor.addEventListener('click', function(e) {
+e.preventDefault();
+const targetId = this.getAttribute('href');
+if (targetId === '#') return;
+const targetElement = document.querySelector(targetId);
+if (targetElement) {
+window.scrollTo({
+top: targetElement.offsetTop - 80,
+behavior: 'smooth'
+});
+}
+});
+});
+// Back to top button
+const backToTopButton = document.getElementById('back-to-top');
+window.addEventListener('scroll', function() {
+if (window.pageYOffset > 300) {
+backToTopButton.classList.remove('opacity-0', 'invisible');
+backToTopButton.classList.add('opacity-100', 'visible');
+} else {
+backToTopButton.classList.remove('opacity-100', 'visible');
+backToTopButton.classList.add('opacity-0', 'invisible');
+}
+});
+backToTopButton.addEventListener('click', function() {
+window.scrollTo({
+top: 0,
+behavior: 'smooth'
+});
+});
+});
+document.addEventListener('DOMContentLoaded', function() {
+// Portfolio Filtering
+const filterButtons = document.querySelectorAll('.filter-btn');
+const portfolioItems = document.querySelectorAll('.portfolio-item');
+filterButtons.forEach(button => {
+button.addEventListener('click', function() {
+// Remove active class from all buttons
+filterButtons.forEach(btn => {
+btn.classList.remove('active', 'bg-primary', 'text-white');
+});
+// Add active class to clicked button
+this.classList.add('active', 'bg-primary', 'text-white');
+const filter = this.getAttribute('data-filter');
+// Filter portfolio items
+portfolioItems.forEach(item => {
+if (filter === 'all' || item.getAttribute('data-category') === filter) {
+item.style.display = 'block';
+} else {
+item.style.display = 'none';
+}
+});
+});
+});
+// Project Modal
+const viewProjectButtons = document.querySelectorAll('.view-project');
+const projectModal = document.getElementById('project-modal');
+const closeModalButton = document.getElementById('close-modal');
+const modalTitle = document.getElementById('modal-title');
+const modalContent = document.getElementById('modal-content');
+viewProjectButtons.forEach(button => {
+button.addEventListener('click', function() {
+const projectItem = this.closest('.portfolio-item');
+const projectTitle = projectItem.querySelector('h3').textContent;
+const projectCategory = projectItem.querySelector('span').textContent;
+const projectDescription = projectItem.querySelector('p').textContent;
+const projectImage = projectItem.querySelector('img').src;
+modalTitle.textContent = projectTitle;
+// Create modal content
+modalContent.innerHTML = `
+<div class="mb-6">
+<img src="${projectImage}" alt="${projectTitle}" class="w-full h-auto rounded-lg">
+</div>
+<div class="mb-4">
+<span class="inline-block bg-secondary px-3 py-1 rounded-full text-xs mb-2">${projectCategory}</span>
+<h4 class="text-xl font-semibold mb-2">Project Overview</h4>
+<p class="text-gray-700 mb-4">${projectDescription}</p>
+<p class="text-gray-700">This project explores innovative design solutions while addressing functional requirements and environmental considerations. The design process involved extensive research, conceptual development, and iterative refinement to achieve the final result.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div>
+<h4 class="text-lg font-semibold mb-2">Project Details</h4>
+<ul class="space-y-2 text-gray-700">
+<li><span class="font-medium">Year:</span> 2024</li>
+<li><span class="font-medium">Location:</span> San Francisco, CA</li>
+<li><span class="font-medium">Size:</span> 2,500 sq ft</li>
+<li><span class="font-medium">Status:</span> Concept</li>
+</ul>
+</div>
+<div>
+<h4 class="text-lg font-semibold mb-2">Tools & Methods</h4>
+<ul class="space-y-2 text-gray-700">
+<li><span class="font-medium">Design:</span> Rhino, SketchUp</li>
+<li><span class="font-medium">Visualization:</span> V-Ray, Photoshop</li>
+<li><span class="font-medium">Documentation:</span> AutoCAD, Revit</li>
+<li><span class="font-medium">Fabrication:</span> 3D Printing, Laser Cutting</li>
+</ul>
+</div>
+</div>
+`;
+projectModal.classList.remove('hidden');
+document.body.style.overflow = 'hidden';
+});
+});
+closeModalButton.addEventListener('click', function() {
+projectModal.classList.add('hidden');
+document.body.style.overflow = 'auto';
+});
+// Close modal when clicking outside
+projectModal.addEventListener('click', function(e) {
+if (e.target === projectModal) {
+projectModal.classList.add('hidden');
+document.body.style.overflow = 'auto';
+}
+});
+// Load More Projects Button (Simulated)
+const loadMoreButton = document.getElementById('load-more');
+let clickCount = 0;
+loadMoreButton.addEventListener('click', function() {
+clickCount++;
+if (clickCount >= 2) {
+this.textContent = 'No More Projects';
+this.disabled = true;
+this.classList.add('opacity-50', 'cursor-not-allowed');
+} else {
+// Show loading state
+this.textContent = 'Loading...';
+// Simulate loading delay
+setTimeout(() => {
+this.textContent = 'Load More Projects';
+// Create new project items
+const portfolioGrid = document.getElementById('portfolio-grid');
+// Project templates for additional projects
+const newProjects = [
+{
+image: 'https://readdy.ai/api/search-image?query=A%20minimalist%20community%20center%20with%20clean%20lines%20and%20large%20open%20spaces.%20The%20architecture%20features%20a%20harmonious%20blend%20of%20concrete%2C%20glass%2C%20and%20wood%20elements%20with%20thoughtful%20integration%20of%20natural%20light%20through%20skylights%20and%20clerestory%20windows.%20The%20design%20shows%20careful%20consideration%20of%20human%20scale%20and%20circulation.%20The%20image%20has%20a%20monochromatic%20aesthetic%20with%20professional%20architectural%20photography%20style%20focusing%20on%20spatial%20quality%20and%20materiality.&width=800&height=600&seq=12&orientation=landscape',
+category: 'Academic',
+title: 'Community Center',
+description: 'A design for a neighborhood community center that provides flexible spaces for various activities and events.'
+},
+{
+image: 'https://readdy.ai/api/search-image?query=A%20modern%20micro-housing%20unit%20with%20clever%20space-saving%20solutions%20and%20multifunctional%20furniture.%20The%20architecture%20features%20compact%20living%20areas%20with%20transformable%20elements%20that%20maximize%20the%20limited%20square%20footage.%20The%20design%20shows%20thoughtful%20details%20like%20built-in%20storage%2C%20folding%20furniture%2C%20and%20efficient%20layout.%20The%20image%20has%20a%20monochromatic%20aesthetic%20with%20professional%20architectural%20interior%20photography%20style%20focusing%20on%20innovative%20small-space%20design.&width=800&height=600&seq=13&orientation=landscape',
+category: 'Conceptual',
+title: 'Micro Housing Unit',
+description: 'A conceptual design exploring minimal living spaces that maximize functionality in urban environments.'
+},
+{
+image: 'https://readdy.ai/api/search-image?query=A%20modern%20train%20station%20with%20dramatic%20roof%20structure%20and%20large%20open%20concourse.%20The%20architecture%20features%20a%20striking%20geometric%20roof%20with%20skylights%20that%20create%20interesting%20light%20patterns%20on%20the%20floor.%20The%20space%20has%20clear%20wayfinding%20and%20thoughtful%20passenger%20circulation.%20The%20image%20has%20a%20monochromatic%20aesthetic%20with%20professional%20architectural%20photography%20style%20focusing%20on%20the%20impressive%20structure%20and%20spatial%20experience.&width=800&height=600&seq=14&orientation=landscape',
+category: 'Competition',
+title: 'Transit Hub',
+description: 'A competition entry for a multi-modal transit hub that integrates different transportation systems.'
+}
+];
+newProjects.forEach(project => {
+const projectHTML = `
+<div class="portfolio-item bg-white rounded-lg overflow-hidden shadow-lg" data-category="${project.category.toLowerCase()}">
+<div class="relative overflow-hidden group">
+<img src="${project.image}" alt="${project.title}" class="w-full h-64 object-cover object-top transition-transform duration-500 group-hover:scale-110">
+<div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+<button class="view-project bg-white text-primary px-4 py-2 !rounded-button whitespace-nowrap">View Project</button>
+</div>
+</div>
+<div class="p-6">
+<span class="inline-block bg-secondary px-3 py-1 rounded-full text-xs mb-3">${project.category}</span>
+<h3 class="text-xl font-semibold mb-2">${project.title}</h3>
+<p class="text-gray-600">${project.description}</p>
+</div>
+</div>
+`;
+portfolioGrid.insertAdjacentHTML('beforeend', projectHTML);
+});
+// Reinitialize view project buttons for new items
+const newViewProjectButtons = document.querySelectorAll('.view-project:not([data-initialized])');
+newViewProjectButtons.forEach(button => {
+button.setAttribute('data-initialized', 'true');
+button.addEventListener('click', function() {
+const projectItem = this.closest('.portfolio-item');
+const projectTitle = projectItem.querySelector('h3').textContent;
+const projectCategory = projectItem.querySelector('span').textContent;
+const projectDescription = projectItem.querySelector('p').textContent;
+const projectImage = projectItem.querySelector('img').src;
+modalTitle.textContent = projectTitle;
+// Create modal content
+modalContent.innerHTML = `
+<div class="mb-6">
+<img src="${projectImage}" alt="${projectTitle}" class="w-full h-auto rounded-lg">
+</div>
+<div class="mb-4">
+<span class="inline-block bg-secondary px-3 py-1 rounded-full text-xs mb-2">${projectCategory}</span>
+<h4 class="text-xl font-semibold mb-2">Project Overview</h4>
+<p class="text-gray-700 mb-4">${projectDescription}</p>
+<p class="text-gray-700">This project explores innovative design solutions while addressing functional requirements and environmental considerations. The design process involved extensive research, conceptual development, and iterative refinement to achieve the final result.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div>
+<h4 class="text-lg font-semibold mb-2">Project Details</h4>
+<ul class="space-y-2 text-gray-700">
+<li><span class="font-medium">Year:</span> 2024</li>
+<li><span class="font-medium">Location:</span> San Francisco, CA</li>
+<li><span class="font-medium">Size:</span> 2,500 sq ft</li>
+<li><span class="font-medium">Status:</span> Concept</li>
+</ul>
+</div>
+<div>
+<h4 class="text-lg font-semibold mb-2">Tools & Methods</h4>
+<ul class="space-y-2 text-gray-700">
+<li><span class="font-medium">Design:</span> Rhino, SketchUp</li>
+<li><span class="font-medium">Visualization:</span> V-Ray, Photoshop</li>
+<li><span class="font-medium">Documentation:</span> AutoCAD, Revit</li>
+<li><span class="font-medium">Fabrication:</span> 3D Printing, Laser Cutting</li>
+</ul>
+</div>
+</div>
+`;
+projectModal.classList.remove('hidden');
+document.body.style.overflow = 'hidden';
+});
+});
+// Apply current filter to new items
+const activeFilter = document.querySelector('.filter-btn.active').getAttribute('data-filter');
+const newPortfolioItems = document.querySelectorAll('.portfolio-item:not([style])');
+if (activeFilter !== 'all') {
+newPortfolioItems.forEach(item => {
+if (item.getAttribute('data-category') !== activeFilter) {
+item.style.display = 'none';
+}
+});
+}
+}, 1000);
+}
+});
+});
+document.addEventListener('DOMContentLoaded', function() {
+// Contact Form Validation
+const contactForm = document.getElementById('contact-form');
+contactForm.addEventListener('submit', function(e) {
+e.preventDefault();
+const nameInput = document.getElementById('name');
+const emailInput = document.getElementById('email');
+const subjectInput = document.getElementById('subject');
+const messageInput = document.getElementById('message');
+let isValid = true;
+// Simple validation
+if (nameInput.value.trim() === '') {
+isValid = false;
+nameInput.classList.add('ring-2', 'ring-red-500');
+} else {
+nameInput.classList.remove('ring-2', 'ring-red-500');
+}
+if (emailInput.value.trim() === '' || !isValidEmail(emailInput.value)) {
+isValid = false;
+emailInput.classList.add('ring-2', 'ring-red-500');
+} else {
+emailInput.classList.remove('ring-2', 'ring-red-500');
+}
+if (subjectInput.value === '') {
+isValid = false;
+subjectInput.classList.add('ring-2', 'ring-red-500');
+} else {
+subjectInput.classList.remove('ring-2', 'ring-red-500');
+}
+if (messageInput.value.trim() === '') {
+isValid = false;
+messageInput.classList.add('ring-2', 'ring-red-500');
+} else {
+messageInput.classList.remove('ring-2', 'ring-red-500');
+}
+if (isValid) {
+// Simulate form submission
+const submitButton = contactForm.querySelector('button[type="submit"]');
+submitButton.disabled = true;
+submitButton.textContent = 'Sending...';
+setTimeout(() => {
+// Reset form
+contactForm.reset();
+// Show success message
+const formContainer = contactForm.parentElement;
+const successMessage = document.createElement('div');
+successMessage.className = 'bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-6';
+successMessage.innerHTML = `
+<div class="flex items-center">
+<div class="w-6 h-6 flex items-center justify-center mr-2">
+<i class="ri-check-line"></i>
+</div>
+<p><strong>Success!</strong> Your message has been sent. I'll get back to you soon.</p>
+</div>
+`;
+formContainer.insertBefore(successMessage, contactForm);
+// Reset button
+submitButton.disabled = false;
+submitButton.textContent = 'Send Message';
+// Remove success message after 5 seconds
+setTimeout(() => {
+successMessage.remove();
+}, 5000);
+}, 1500);
+}
+});
+function isValidEmail(email) {
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+return emailRegex.test(email);
+}
+// Custom form elements
+const customCheckboxes = document.querySelectorAll('.custom-checkbox');
+customCheckboxes.forEach(checkbox => {
+checkbox.addEventListener('click', function() {
+this.classList.toggle('checked');
+const input = this.previousElementSibling;
+if (input && input.type === 'checkbox') {
+input.checked = !input.checked;
+}
+});
+});
+const customSwitches = document.querySelectorAll('.custom-switch-input');
+customSwitches.forEach(switchInput => {
+switchInput.addEventListener('change', function() {
+// The styling is handled by CSS
+});
+});
+});
+</script>
+</body>
+</html>
